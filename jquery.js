@@ -46,7 +46,7 @@ let getDetailByImdbId = (imdb) =>{
 		type:"GET",
 		dataType:"json",
 		async:true,
-		url:`http://www.omdbapi.com/?i=`+imdb+ `&apikey=68f936a4`,
+		url:`https://www.omdbapi.com/?i=`+imdb+ `&apikey=68f936a4`,
 		success:(response) =>{
 
 			$("#title").empty().append("<b>Title:</b>"+ response.Title);
@@ -115,7 +115,7 @@ let getDetailByTitle = (movieTitle=null,movieYear=null) =>{
 		type:"GET",
 		dataType:"json",
 		async:true,
-		url:`http://www.omdbapi.com/?`+movieTitle+movieYear+ `&apikey=68f936a4`,
+		url:`https://www.omdbapi.com/?`+movieTitle+movieYear+ `&apikey=68f936a4`,
 		success:(response) =>{
 
 			$("#title").empty().append("<b>Title:</b>"+ response.Title);

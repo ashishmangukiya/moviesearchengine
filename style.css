@@ -85,7 +85,7 @@ width: 100%;
 	border-radius: 15px;
 	margin-top:	 20px;
 }
-.back,.postero{
+.back{
 	background:	#9ADFDD;
 	border: 5px solid #9ADFDD;
 	border-radius: 15px;
@@ -94,4 +94,11 @@ width: 100%;
 	display: none;
 
 
+}
+.postero{
+	background:	#9ADFDD;
+	border: 5px solid #9ADFDD;
+	border-radius: 15px;
+	box-shadow: 5px 10px #888888;
+	margin-bottom: 15px;
 }

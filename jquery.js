@@ -6,11 +6,12 @@ $(document).ready(() => {
     movieTitle = document.getElementById("name").value;
     movieYear=document.getElementById("year").value;
     if(movieTitle!="" && movieYear!="")
-  	{  	 
+  	{  	 	$(".back").css("display","block");
     	getDetailByTitle("t="+movieTitle,"&y="+movieYear);
 	}
 	else if(movieTitle!="" && movieYear=="")
 	{
+			$(".back").css("display","block");
 		getDetailByTitle("t="+movieTitle,movieYear);
 	}
 	else if(movieTitle=="" && movieYear!="")
@@ -27,7 +28,7 @@ $(document).ready(() => {
    $("#secondsubmit").click(()=> {
  	imdb=document.getElementById("imdb").value;
  	if(imdb!="")
- 	{
+ 	{	$(".back").css("display","block");
  	getDetailByImdbId(imdb);
  	}
  	else
@@ -48,8 +49,14 @@ let getDetailByImdbId = (imdb) =>{
 		async:true,
 		url:`https://www.omdbapi.com/?i=`+imdb+ `&apikey=68f936a4`,
 		success:(response) =>{
-
+			if(response.Title!= undefined)
+			{
 			$("#title").empty().append("<b>Title:</b>"+ response.Title);
+			}
+			else{
+				alert("movie is not available");
+				$(".back").css("display","none");
+			}
 			$("#yearofmovie").empty().append("<b>Year:</b>"+response.Year);
 			$("#rated").empty().append("<b>Rated:</b>"+response.Rated);
 			$("#released").empty().append("<b>Released:</b>"+response.Released);
@@ -90,10 +97,9 @@ let getDetailByImdbId = (imdb) =>{
     		
 
 		},
-		error: (err) => {
+		error: (response) => {
 
-            alert(err.responseJSON.error.message);
-            alert(err.responseJSON.error.message)
+            console.log(err.responseJSON.error.message);
 
 
 
@@ -117,8 +123,15 @@ let getDetailByTitle = (movieTitle=null,movieYear=null) =>{
 		async:true,
 		url:`https://www.omdbapi.com/?`+movieTitle+movieYear+ `&apikey=68f936a4`,
 		success:(response) =>{
-
+			if(response.Title!= undefined)
+			{
 			$("#title").empty().append("<b>Title:</b>"+ response.Title);
+			}
+			else{
+								alert("movie is not available");
+
+				$(".back").css("display","none");
+			}
 			$("#yearofmovie").empty().append("<b>Year:</b>"+response.Year);
 			$("#rated").empty().append("<b>Rated:</b>"+response.Rated);
 			$("#released").empty().append("<b>Released:</b>"+response.Released);
@@ -159,9 +172,8 @@ let getDetailByTitle = (movieTitle=null,movieYear=null) =>{
     		
 
 		},
-		error : (err) => {
+		error : (response) => {
 			console.log(err.responseJSON.error.message);
-            alert(err.responseJSON.error.message)
 
 		},
 		 
